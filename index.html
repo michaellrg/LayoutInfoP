@@ -619,9 +619,11 @@
                               <header class="panel-heading">
                                   <h1>  Histórico de Preço  </h1>
                               </header>
+							  
 							  </div>
                               <div class="panel-body text-center">
-                                 <img src ="http://blogdocchs.filoinfo.net/sites/blogdocchs.filoinfo.net/files/Observato%CC%81rio%20Empresarial%20-%2006-07-16%20-%20Roberta%20-%20figura%201.jpg" width= 90% height=50%/>
+							  <br><br>
+								<div id="chart_div" ></div>
                               </div>
                           </section>
                       
@@ -640,7 +642,8 @@
                               </header>
 							  </div>
                               <div class="panel-body text-center">
-                               <img src="http://www.apsc.gov.au/__data/assets/image/0007/62773/fig-8.png" height =100% width=100%/>
+							  <br><br>
+                                <div id="curve_chart" ></div>
                               </div>
                           </section>
                       
@@ -1138,8 +1141,8 @@
                           </div>
                       </div>
                       <!--weather statement start-->
-                      <!--<section class="panel">
-                          <div class="weather-bg">
+                      <section class="panel">
+                         <!-- <div class="weather-bg">
                               <div class="panel-body">
                                   <div class="row">
                                       <div class="col-xs-6">
@@ -1181,6 +1184,7 @@
       </section>-->
       <!--main content end-->
       <!--footer start-->
+	 
       <footer class="site-footer">
           <div class="text-center">
               2013 &copy; FlatLab by VectorLab.
@@ -1189,6 +1193,7 @@
               </a>
           </div>
       </footer>
+	  
       <!--footer end-->
   </section>
 
@@ -1232,6 +1237,62 @@
           $('select.styled').customSelect();
       });
   </script>
+ 
+   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+   <script>
+   google.charts.load('current', {packages: ['corechart', 'line']});
+google.charts.setOnLoadCallback(drawBasic);
+
+function drawBasic() {
+
+      var data = google.visualization.arrayToDataTable([
+          ['Data', 'Unilever'],
+          ['Jul/16',  5.50],
+          ['Ago/16',  7],
+          ['Set/16',  5],
+          ['Out/16',  6.80]
+        ]);
+
+      var options = {
+	          hAxis: {
+          title: 'Data'
+        },
+        vAxis: {
+          title: 'Valor'
+        }
+      };
+
+      var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+      chart.draw(data, options);
+    }</script>
+	
+	
+	<script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Data', 'Unilever', 'Bunge'],
+          ['Jul/16',  5.50,      6],
+          ['Ago/16',  7,      6.50],
+          ['Set/16',  5,       5.50],
+          ['Out/16',  6.80,      6.30]
+        ]);
+
+        var options = {
+          
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
  
   </body>
 </html>
