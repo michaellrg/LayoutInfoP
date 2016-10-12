@@ -8,7 +8,7 @@
     <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
     <link rel="shortcut icon" href="img/favicon.png">
 
-    <title>Sortimento de Produtos - InfoPrice</title>
+    <title>Preço de Produtos - InfoPrice</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -289,16 +289,16 @@
                           <span>Operações</span>
                       </a>
                       <ul class="sub">
-                          <li class="active"><a  href="sortimento.html">Sortimento</a></li>
+                          <li><a  href="sortimento.html">Sortimento</a></li>
                       </ul>
                       <ul class="sub">
                           <li><a  href="historico-de-precos.html">Histórico de Preços</a></li>
-                      </ul>                      
+                      </ul>
                       <ul class="sub">
                           <li><a  href="comparar-produto.html">Comparar Produtos</a></li>
                       </ul>
                       <ul class="sub">
-                          <li><a  href="preco-produto.html">Preço dos Produtos</a></li>
+                          <li class="active"><a  href="preco-produto.html">Preço do Produto</a></li>
                       </ul>
                   </li>
 
@@ -458,17 +458,18 @@
                   <div class="col-lg-12">
                       <section class="panel">
                           <header class="panel-heading">
-                              Sortimento
+                              Preço Atual
                           </header>
                           <div class="panel-body">
-                                
+                                <h4>OBS: Ultima coleta de preço em 12/10/2016</h4>
                                   <!-- FORM -->
                                   <form class="form-inline">
                                       <div class="form-group">
                                             <label for="email">Produto:</label>
                                             <select class="form-control">
                                                 <option>Todos</option>
-                                                <option selected>Maionese</option>
+                                                <option selected>Desodorante</option>
+                                                <option>Maionese</option>
                                                 <option>Refrigerante</option>
                                                 <option>Salgadinho</option>
                                                 <option>Sorvete</option>
@@ -479,6 +480,7 @@
                                             <label for="email">Marca:</label>
                                             <select class="form-control">
                                                 <option>Todas</option>
+                                                <option selected>Rexona</option>
                                                 <option>Arisco</option>
                                                 <option>Hellmann’s</option>
                                                 <option>Primor</option>
@@ -498,7 +500,7 @@
                                                 <option>Todos</option>
                                                 <option>Mecado-Pequeno</option>
                                                 <option>Mercado-Medio</option>
-                                                <option>Supermercado</option>
+                                                <option selected>Supermercado</option>
                                                 <option>Hipermercado</option>
                                             </select>
                                         </div>
@@ -524,7 +526,7 @@
                                                 <option>Paraná</option>
                                                 <option>Pernambuco</option>
                                                 <option>Piauí</option>
-                                                <option>Rio de Janeiro</option>
+                                                <option selected>Rio de Janeiro</option>
                                                 <option>Rio Grande do Norte</option>
                                                 <option>Rio Grande do Sul</option>
                                                 <option>Rondônia</option>
@@ -557,7 +559,7 @@
                                                 <option>Curitiba</option>
                                                 <option>Recife</option>
                                                 <option>Teresina</option>
-                                                <option>Rio de Janeiro</option>
+                                                <option selected>Rio de Janeiro</option>
                                                 <option>Natal</option>
                                                 <option>Porto Alegre</option>
                                                 <option>Porto Velho</option>
@@ -571,7 +573,7 @@
                                         <div class="form-group">
                                             <label for="email">Região:</label>
                                             <select class="form-control">
-                                                <option>Todas</option>
+                                                <option selected>Todas</option>
                                                 <option>Norte</option>
                                                 <option>Nordeste</option>
                                                 <option>Centro-Oeste</option>
@@ -586,97 +588,52 @@
                                     <table  class="display table table-bordered table-striped" id="example">
                                       <thead>
                                       <tr>
-                                          <th class="text-center">Produto</th>
-                                          <th class="text-center">Marca</th>
-                                          <th class="text-center">Mercado %</th>
-                                          <th class="text-center hidden-phone">Numero de Produtos</th>
+                                          <th class="text-center">Nome</th>
+                                          <th class="text-center">Loja</th>
+                                          <th class="text-center">Valor</th>
                                           <!-- <th class="text-center hidden-phone"></th> -->
                                       </tr>
                                       </thead>
                                       <tbody>
                                       <tr class="gradeX">
-                                          <td>Maionese</td>
-                                          <td>Liza</td>
-                                          <td>11</td>
-                                          <td class="center hidden-phone">110.000</td>
-                                          <!-- <td class="center hidden-phone"></td> -->
+                                          <td>Rexona</td>
+                                          <td>Supermercados Mundial</td>
+                                          <td>13,99</td>
                                       </tr>
                                       <tr class="gradeC">
-                                          <td>Maionese</td>
-                                          <td>Arisco</td>
-                                          <td>6</td>
-                                          <td class="center hidden-phone">60.000</td>
-                                          <!-- <td class="center hidden-phone"></td> -->
+                                          <td>Rexona</td>
+                                          <td>Super Prix Supermercados</td>
+                                          <td>13,99</td>
                                       </tr>
                                       <tr class="gradeA">
-                                          <td>Maionese</td>
-                                          <td>Hellmann’s</td>
-                                          <td>25</td>
-                                          <td class="center hidden-phone">250.000</td>
-                                          <!-- <td class="center hidden-phone"></td> -->
+                                          <td>Rexona</td>
+                                          <td>Vianense Supermercados</td>
+                                          <td>13,99</td>
                                       </tr>
                                       <tr class="gradeA">
-                                          <td>Maionese</td>
-                                          <td>Primor</td>
-                                          <td>5</td>
-                                          <td class="center hidden-phone">50.000</td>
-                                          <!-- <td class="center hidden-phone"></td> -->
+                                          <td>Rexona</td>
+                                          <td>Supermercados Intercontinental</td>
+                                          <td>13,99</td>
                                       </tr>
                                       <tr class="gradeA">
-                                          <td>Maionese</td>
-                                          <td>Soya</td>
-                                          <td>7</td>
-                                          <td class="center hidden-phone">70.000</td>
-                                          <!-- <td class="center hidden-phone"></td> -->
+                                          <td>Rexona</td>
+                                          <td>Princesa Supermercados</td>
+                                          <td>14,99</td>
                                       </tr>
                                       <tr class="gradeA">
-                                          <td>Maionese</td>
-                                          <td>Fifties</td>
-                                          <td>3</td>
-                                          <td class="center hidden-phone">30.000</td>
-                                          <!-- <td class="center hidden-phone"></td> -->
+                                          <td>Rexona</td>
+                                          <td>Supermarket Tanque</td>
+                                          <td>15,99</td>
                                       </tr>
                                       <tr class="gradeA">
-                                          <td>Maionese</td>
-                                          <td>Gourmet</td>
-                                          <td>7</td>
-                                          <td class="center hidden-phone">70.000</td>
-                                          <!-- <td class="center hidden-phone">A</td> -->
+                                          <td>Rexona</td>
+                                          <td>Supermercado Zona Sul</td>
+                                          <td>16,99</td>
                                       </tr>
                                       <tr class="gradeA">
-                                          <td>Maionese</td>
-                                          <td>Heinz</td>
-                                          <td>20</td>
-                                          <td class="center hidden-phone">200.000</td>
-                                          <!-- <td class="center hidden-phone">A</td> -->
-                                      </tr>
-                                      <tr class="gradeA">
-                                          <td>Maionese</td>
-                                          <td>Maria</td>
-                                          <td>2</td>
-                                          <td class="center hidden-phone">20.000</td>
-                                          <!-- <td class="center hidden-phone">A</td> -->
-                                      </tr>
-                                      <tr class="gradeA">
-                                          <td>Maionese</td>
-                                          <td>Mesa</td>
-                                          <td>4</td>
-                                          <td class="center hidden-phone">40.000</td>
-                                          <!-- <td class="center hidden-phone">A</td> -->
-                                      </tr>
-                                      <tr class="gradeA">
-                                          <td>Maionese</td>
-                                          <td>Quero</td>
-                                          <td>6</td>
-                                          <td class="center hidden-phone">40.000</td>
-                                          <!-- <td class="center hidden-phone">A</td> -->
-                                      </tr>
-                                      <tr class="gradeU">
-                                          <td>Maionese</td>
-                                          <td>Outras</td>
-                                          <td>6</td>
-                                          <td class="center hidden-phone">60.000</td>
-                                          <!-- <td class="center hidden-phone">U</td> -->
+                                          <td>Rexona</td>
+                                          <td>Supermercados Guanabara</td>
+                                          <td>12,99</td>
                                       </tr>
                                       </tbody>
                                       <tfoot>
@@ -684,7 +641,6 @@
                                           <th class="text-center">Maionese</th>
                                           <th class="text-center">Total de Marcas: 12</th>
                                           <th class="text-center">Total 100%</th>
-                                          <th class="text-center hidden-phone">Total de Produtos: 1.000.000,00</th>
                                           <!-- <th class="text-center hidden-phone">CSS grade</th> -->
                                       </tr>
                                       </tfoot>
