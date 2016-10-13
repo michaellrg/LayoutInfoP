@@ -672,6 +672,25 @@
                       <!--total earning end-->
                   </div>
               </div>
+			  <div class ="row">
+			  <div class= "col-lg-11">
+			     <div class="border-head">
+					   <section class="panel">
+					   <div class="task-progress">
+                              <header class="panel-heading">
+							  
+                                   <h1> Precificação por Zona  </h1>
+								   
+                              </header>
+							  </div>
+                              <div class="panel-body text-center">
+							  <br><br>
+                               <div id="regions_div" style="width: 80%; height: 80%;"></div> 
+                              </div>
+                          </section>
+                      
+                      </div>
+			  </div>
               <!--<div class="row">
                   <div class="col-lg-4">-->
                       <!--user info table start-->
@@ -1221,7 +1240,7 @@
 	 <!-- script for this page only-->
     <script src="js/all-chartjs.js"></script>
 	<script src="assets/chart-master/Chart.js"></script>
-  <script>
+  <script type="text/javascript">
       //owl carousel
       $(document).ready(function() {
           $("#owl-demo").owlCarousel({
@@ -1240,7 +1259,8 @@
  
    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
    
-   <script>
+   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+   <script type="text/javascript" >
    google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(drawBasic);
 
@@ -1293,6 +1313,31 @@ function drawBasic() {
         chart.draw(data, options);
       }
     </script>
+	
+	 <script type="text/javascript">
+      google.charts.load('upcoming', {'packages':['geochart']});
+      google.charts.setOnLoadCallback(drawRegionsMap);
+
+      function drawRegionsMap() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['País', 'Preço'],
+          ['Alemanha', 8],
+          ['Estados Unidos', 5],
+          ['Brasil', 12],
+          ['Canadá', 6],
+          ['França', 7],
+          ['Rússia', 7]
+        ]);
+
+        var options = {};
+
+        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
  
   </body>
 </html>
