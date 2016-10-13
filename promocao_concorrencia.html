@@ -494,14 +494,17 @@
                   <div class="col-lg-12">
                       <section class="panel">
                           <header class="panel-heading">
-                              Preço Sugerido X Preço Praticado
+                              Promoção x Concorrência
                           </header>
                           <div class="panel-body">
                             <div class="form-group">
-                              <p id="choices">Mostrar:</p>
+                              <p id="choices">Mostrar:
+                                  <input type="radio" onclick="drawChart()" checked value="mensal" name="periodo"> Mensal
+                                  <input type="radio" onclick="drawChart()" value="semanal" name="periodo"> Semanal</p>
                             </div>
                               
-                            <div id="placeholder" style="width:700px;height:300px;"></div>
+                              <div id="curve_chart2" ></div>
+                            <!--<div id="placeholder" style="width:700px;height:300px;"></div>-->
                           </div>
                       </section>
                   </div>
@@ -560,163 +563,49 @@
         });
     </script>
 
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   
+   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
     <script type="text/javascript">
-    $(function () {
-        var d_carrefour = [[0, 0]];
-        var d_extra = [[0, 0]];
-        var d_stmarche = [[0, 0]];
-        var d_wallmart = [[0, 0]];
-        var d_dia = [[0, 0]];
-        var d_pao_de_acucar = [[0, 0]];
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
 
-        function randomIntFromInterval(min,max) {
-            return Math.floor(Math.random()*(max-min+1)+min);
+      function drawChart() {
+          var p = document.querySelector('input[name="periodo"]:checked').value;
+
+        var data;
+
+        if(p === "mensal") {
+            data = google.visualization.arrayToDataTable([
+                ['Data', 'Unilever', 'Bunge','Cargill', 'Vigor'],
+                ['Jul/16',  5.50,      6, 6.30, 7],
+                ['Ago/16',  7,      6.50, 5.80,6.80],
+                ['Set/16',  5,       5.50, 6, 6.90],
+                ['Out/16',  6.80,      6.30, 6.70,8],
+                ['Nov/16',  6.80,      6.30, 6.70,8]
+            ]);
+        } else if(p === "semanal" ) {
+            data = google.visualization.arrayToDataTable([
+                ['Data', 'Unilever', 'Bunge','Cargill', 'Vigor'],
+                ['Semana 1 Jul/16',  4.50,      7, 5.30, 8],
+                ['Semana 2 Jul/16',  6,      5.50, 3.80,4.80],
+                ['Semana 3 Jul/16',  7,       6.50, 8, 4.90],
+                ['Semana 4 Jul/16',  7.80,      4.30, 5.70,6]
+            ]);
         }
 
-        for (var i = 1; i < 9; i++) {
-            // d_extra = [[0, 0], [1, -23], [2, -40], [3, -20], [4, -40], [5, 20], [6, 0], [7, 0]];
-            
-            d_carrefour.push([i, randomIntFromInterval(-60, 40)]);
-            d_extra.push([i, randomIntFromInterval(-60, 40)]);
-            d_stmarche.push([i, randomIntFromInterval(-60, 40)]);
-            d_wallmart.push([i, randomIntFromInterval(-60, 40)]);
-            d_dia.push([i, randomIntFromInterval(-60, 40)]);
-            d_pao_de_acucar.push([i, randomIntFromInterval(-60, 40)]);
-        }
-
-        console.log(d_carrefour);
-
-        var datasets = {
-            "Carrefour": {
-                label: "Carrefour",
-                data: d_carrefour,
-                points: { show: true },
-                lines: { show: true }, 
-            },
-            "Extra": {
-                label: "Extra",
-                data: d_extra,
-                points: { show: true },
-                lines: { show: true }, 
-            },
-            "St. Marche": {
-                label: "St. Marche",
-                data: d_stmarche,
-                points: { show: true },
-                lines: { show: true }, 
-            },
-            "Wall Mart": {
-                label: "Wall Mart",
-                data: d_wallmart,
-                points: { show: true },
-                lines: { show: true }, 
-            },
-            "Dia": {
-                label: "Dia",
-                data: d_dia,
-                points: { show: true },
-                lines: { show: true }, 
-            },
-            "Pão de Açucar": {
-                label: "Pão de Açucar",
-                data: d_pao_de_acucar,
-                points: { show: true },
-                lines: { show: true },
-            }
+        var options = {
+          
+          curveType: 'function',
+          legend: { position: 'bottom' }
         };
 
-        var i = 0;
-        $.each(datasets, function(key, val) {
-            val.color = i;
-            ++i;
-        });
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart2'));
 
-        var choiceContainer = $("#choices");
-
-        $.each(datasets, function(key, val) {
-            choiceContainer.append('&nbsp;&nbsp;<input type="checkbox" name="' + key +
-                                '" checked="checked" id="id' + key + '">' +
-                                '<label for="id' + key + '">'
-                                    + val.label + '</label>');
-        });
-
-        choiceContainer.find("input").click(plotAccordingToChoices);
-
-        function plotAccordingToChoices() {
-            var data = [];
-
-            choiceContainer.find("input:checked").each(function () {
-                var key = $(this).attr("name");
-                if (key && datasets[key])
-                    data.push(datasets[key]);
-            });
-
-            if (data.length > 0)
-                $.plot($("#placeholder"), data, {
-                    yaxis: {
-                        ticks: [[0, '0'], [20, '20%'], [40, '40%'],
-                        [-20, '-20%'], [-40, '-40%'], [-60, '-60%']],
-                            min: -60,
-                            max: 40
-                        },
-                    xaxis: {
-                        show: true,
-                        position: "bottom",
-                        min: null,
-                        max: 8,
-                        ticks: [[1, "Out 1"],
-                            [2, "Out 2"],
-                            [3, "Out 3"],
-                            [4, "Out 4"],
-                            [5, "Out 5"],
-                            [6, "Out 6"],
-                            [7, "Out 7"],
-                            [8, "Out 8"]],
-                        tickColor: "#efefef"
-                    },
-                    grid: { hoverable: true, clickable: true },
-                });
-        }
-
-        function showTooltip(x, y, contents) {
-            $('<div id="tooltip">' + contents + '</div>').css( {
-                position: 'absolute',
-                display: 'none',
-                top: y + 5,
-                left: x + 5,
-                border: '1px solid #fdd',
-                padding: '2px',
-                'background-color': '#fee',
-                opacity: 0.80
-            }).appendTo("body").fadeIn(200);
-        }
-
-        var previousPoint = null;
-        $("#placeholder").bind("plothover", function (event, pos, item) {
-            $("#x").text(pos.x.toFixed(2));
-            $("#y").text(pos.y.toFixed(2));
-
-                if (item) {
-                    if (previousPoint != item.dataIndex) {
-                        previousPoint = item.dataIndex;
-                        
-                        $("#tooltip").remove();
-
-                        var x = item.datapoint[0],
-                            y = item.datapoint[1];
-                        
-                        showTooltip(item.pageX, item.pageY,
-                                    item.series.label + " em " + x + " Out: " + y + '%');
-                    }
-                }
-                else {
-                    $("#tooltip").remove();
-                    previousPoint = null;            
-                }
-        });
-
-        plotAccordingToChoices();   
-    });
+        chart.draw(data, options);
+      }
     </script>
-    </body>
+
+        </body>
 </html>
